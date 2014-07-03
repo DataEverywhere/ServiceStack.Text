@@ -216,6 +216,9 @@ namespace ServiceStack.Text.Common
                             return Serializer.WriteNullableDateTime;
                         else
                             return Serializer.WriteDateTime;
+
+                    case TypeCode.String:
+                        return Serializer.WriteString;
                 }
 
                 if (type == typeof(DateTimeOffset))

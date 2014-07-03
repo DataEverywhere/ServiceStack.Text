@@ -82,8 +82,9 @@ namespace ServiceStack.Text.Jsv
 			writer.Write(((Exception)value).Message.EncodeJsv());
 		}
 
-		public void WriteString(TextWriter writer, string value)
+		public void WriteString(TextWriter writer, object objValue)
 		{
+		    var value = objValue as string;
 		    if(JsState.QueryStringMode && !string.IsNullOrEmpty(value) && value.StartsWith(JsWriter.QuoteString) && value.EndsWith(JsWriter.QuoteString))
                 value = String.Concat(JsWriter.QuoteChar, value, JsWriter.QuoteChar);
 		    else if (JsState.QueryStringMode && !string.IsNullOrEmpty(value) && value.Contains(JsWriter.ItemSeperatorString))

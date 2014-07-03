@@ -80,9 +80,9 @@ namespace ServiceStack.Text.Json
             }
         }
 
-        public void WriteString(TextWriter writer, string value)
+        public void WriteString(TextWriter writer, object value)
         {
-            JsonUtils.WriteString(writer, value);
+            JsonUtils.WriteString(writer, (string)value);
         }
 
         public void WriteBuiltIn(TextWriter writer, object value)

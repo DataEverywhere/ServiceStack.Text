@@ -19,7 +19,7 @@ namespace ServiceStack.Text.Common
         void WriteBuiltIn(TextWriter writer, object value);
         void WriteObjectString(TextWriter writer, object value);
         void WriteException(TextWriter writer, object value);
-        void WriteString(TextWriter writer, string value);
+        void WriteString(TextWriter writer, object value);
         void WriteFormattableObjectString(TextWriter writer, object value);
         void WriteDateTime(TextWriter writer, object oDateTime);
         void WriteNullableDateTime(TextWriter writer, object dateTime);
