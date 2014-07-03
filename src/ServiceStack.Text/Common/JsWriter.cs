@@ -181,44 +181,42 @@ namespace ServiceStack.Text.Common
 
             if (!underlyingType.IsEnum())
             {
-                var typeCode = underlyingType.GetTypeCode();
+                switch (underlyingType.GetTypeCode())
+                {
+                    case TypeCode.Int16:
+                        return Serializer.WriteInt16;
+                    case TypeCode.UInt16:
+                        return Serializer.WriteUInt16;
+                    case TypeCode.Int32:
+                        return Serializer.WriteInt32;
+                    case TypeCode.UInt32:
+                        return Serializer.WriteUInt32;
+                    case TypeCode.Int64:
+                        return Serializer.WriteInt64;
+                    case TypeCode.UInt64:
+                        return Serializer.WriteUInt64;
 
-                if (typeCode == TypeCode.Char)
-                    return Serializer.WriteChar;
-                if (typeCode == TypeCode.Int32)
-                    return Serializer.WriteInt32;
-                if (typeCode == TypeCode.Int64)
-                    return Serializer.WriteInt64;
-                if (typeCode == TypeCode.UInt64)
-                    return Serializer.WriteUInt64;
-                if (typeCode == TypeCode.UInt32)
-                    return Serializer.WriteUInt32;
+                    case TypeCode.Char:
+                        return Serializer.WriteChar;
+                    case TypeCode.Byte:
+                        return Serializer.WriteByte;
+                    case TypeCode.Boolean:
+                        return Serializer.WriteBool;
 
-                if (typeCode == TypeCode.Byte)
-                    return Serializer.WriteByte;
+                    case TypeCode.Single:
+                        return Serializer.WriteFloat;
+                    case TypeCode.Double:
+                        return Serializer.WriteDouble;
 
-                if (typeCode == TypeCode.Int16)
-                    return Serializer.WriteInt16;
-                if (typeCode == TypeCode.UInt16)
-                    return Serializer.WriteUInt16;
+                    case TypeCode.Decimal:
+                        return Serializer.WriteDecimal;
 
-                if (typeCode == TypeCode.Boolean)
-                    return Serializer.WriteBool;
-
-                if (typeCode == TypeCode.Single)
-                    return Serializer.WriteFloat;
-
-                if (typeCode == TypeCode.Double)
-                    return Serializer.WriteDouble;
-
-                if (typeCode == TypeCode.Decimal)
-                    return Serializer.WriteDecimal;
-
-                if (typeCode == TypeCode.DateTime)
-                    if (isNullable)
-                        return Serializer.WriteNullableDateTime;
-                    else
-                        return Serializer.WriteDateTime;
+                    case TypeCode.DateTime:
+                        if (isNullable)
+                            return Serializer.WriteNullableDateTime;
+                        else
+                            return Serializer.WriteDateTime;
+                }
 
                 if (type == typeof(DateTimeOffset))
                     return Serializer.WriteDateTimeOffset;
